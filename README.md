@@ -45,7 +45,7 @@ Exécution enregistrée dans le notebook (le LLM n'étant pas déterministe, les
 
 - L'agent décide correctement d'appeler ou non l'outil, et choisit le type de recherche selon la demande.
 - La recherche par texte et par image fonctionne, et l'information absente de l'article est bien signalée.
-- Limites relevées : une erreur de fond (scénario 8 de l'agent), des citations de page imprécises et des informations présentes dans l'article mais non récupérées (test 11 du RAG). L'analyse complète se trouve à la fin du notebook.
+- Limites relevées : des citations de page imprécises et une information présente dans l'article mais non récupérée (`d_ff`, test 11 du RAG). L'analyse complète se trouve à la fin du notebook.
 
 ## Exécution
 
