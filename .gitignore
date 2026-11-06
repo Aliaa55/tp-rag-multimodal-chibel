@@ -1,0 +1,9 @@
+.venv/
+.env
+__pycache__/
+.ipynb_checkpoints/
+
+# Regénérés par le notebook
+pdfs/
+resultats_pdf/
+chroma_pdf/
