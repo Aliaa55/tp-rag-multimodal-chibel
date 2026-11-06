@@ -26,24 +26,26 @@ graph TD
 
 ## Correspondance avec l'énoncé
 
+Le notebook suit la structure et le code du notebook de cours, avec une section par étape de l'énoncé.
+
 | Étape | Réalisation |
 |---|---|
 | 1. Extraction | PyMuPDF : texte par page, fragments d'environ 60 tokens, images sauvegardées |
 | 2. Embeddings | CLIP `ViT-B-32` (`laion2b_s34b_b79k`) via `open_clip`, vecteurs normalisés |
 | 3. Indexation | ChromaDB, identifiant SHA-256, métadonnées (type, page, chemin) |
 | 4. Recherche | Similarité cosinus, requête texte ou image, affichage des `k` meilleurs résultats |
+| Query et Generation | `recuperer_sources`, `generer_reponse` et `rag()`, avec 14 tests |
 | 5. Outil | `retriever_tool`, avec description et schéma d'arguments pour guider le LLM |
 | 6. Agent | `StateGraph` LangGraph : `mind`, `body`, `observation` (cycle ReAct) |
-| 7. Tests | 8 scénarios, trace de chaque décision et bilan automatique |
+| 7. Tests | Interrogation de l'agent, 8 scénarios avec trace de chaque décision et bilan |
 
 ## Résultats
 
 Exécution enregistrée dans le notebook (le LLM n'étant pas déterministe, les réponses peuvent varier) :
 
-- 8 décisions d'appel d'outil correctes sur 8, et au plus 3 tours de recherche par question.
-- Réponses justes sur le fond dans les 8 scénarios, dont un cas d'information absente et une requête par image.
-- Contrôle automatique des faits : 7/8. Le test 5 ne mentionne pas « sinus », terme que la question ne demandait pas.
-- Principale limite : certaines citations de page sont imprécises (test 8). L'analyse complète se trouve à la fin du notebook.
+- L'agent décide correctement d'appeler ou non l'outil, et choisit le type de recherche selon la demande.
+- La recherche par texte et par image fonctionne, et l'information absente de l'article est bien signalée.
+- Limites relevées : une erreur de fond (scénario 8 de l'agent), des citations de page imprécises et des informations présentes dans l'article mais non récupérées (test 11 du RAG). L'analyse complète se trouve à la fin du notebook.
 
 ## Exécution
 
